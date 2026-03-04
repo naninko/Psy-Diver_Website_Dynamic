@@ -1,0 +1,49 @@
+{
+  "news": [
+    {
+      "id": "1",
+      "date": "2025-11-01",
+      "category": "projectUpdate",
+      "titleDe": "PSY-DIVER Projektstart",
+      "titleEn": "PSY-DIVER Project Launch",
+      "excerptDe": "Wir freuen uns, den offiziellen Start der PSY-DIVER-Forschungsinitiative bekannt zu geben.",
+      "excerptEn": "We are excited to announce the official launch of the PSY-DIVER research initiative.",
+      "contentDe": "Das PSY-DIVER-Projekt wurde offiziell mit Förderung durch den Innovationsfonds gestartet.",
+      "contentEn": "The PSY-DIVER project has officially launched with funding from the Innovationsfonds."
+    },
+    {
+      "id": "2",
+      "date": "2026-02-01",
+      "category": "teamNews",
+      "titleDe": "Forschungsteam vollständig aufgebaut",
+      "titleEn": "Research Team Assembly Complete",
+      "excerptDe": "Unser multidisziplinäres Forschungsteam wurde zusammengestellt.",
+      "excerptEn": "Our multidisciplinary research team has been assembled.",
+      "contentDe": "Wir sind stolz, den Abschluss unseres Forschungsteamaufbaus bekannt zu geben, der Expert*innen aus Psychiatrie, Datenwissenschaft und Gesundheitsgerechtigkeitsforschung zusammenbringt.",
+      "contentEn": "We are proud to announce the completion of our research team assembly, bringing together experts in psychiatry, data science, and health equity research."
+    },
+    {
+      "id": "3",
+      "date": "2026-01-15",
+      "category": "methodology",
+      "titleDe": "Datenerfassungsinfrastruktur eingerichtet",
+      "titleEn": "Data Collection Infrastructure Established",
+      "excerptDe": "Modernste Datenerfassungsinfrastruktur wurde eingerichtet.",
+      "excerptEn": "State-of-the-art data collection infrastructure has been established.",
+      "contentDe": "Unser Team hat erfolgreich die technische Infrastruktur für die Datenerfassung etabliert, einschließlich KI-gestützter Extraktionssysteme und sicherer Datenverwaltungsprotokolle.",
+      "contentEn": "Our team has successfully established the technical infrastructure for data collection, including AI-powered extraction systems and secure data management protocols."
+    },
+    {
+      "id": "4",
+      "date": "2026-02-18",
+      "category": "engagement",
+      "titleDe": "Co-Creation Workshop",
+      "titleEn": "Co-Creation Workshop",
+      "excerptDe": "Partizipativer Workshop zur gemeinsamen Projektgestaltung geplant.",
+      "excerptEn": "Participatory workshop planned for collaborative project development.",
+      "contentDe": "Der Co-Creation Workshop findet am 18.02.2026 von 09:00-15:00 Uhr in der LVR-Klinik Köln statt. Dabei werden ca. 15 Teilnehmer*innen von der Projektsteuerungsgruppe und das Team zusammenkommen, um gemeinsam die weitere Ausrichtung des PSY-DIVER Projekts zu gestalten.",
+      "contentEn": "The Co-Creation Workshop will take place on February 18, 2026, from 9:00 AM to 3:00 PM at LVR-Klinik Köln. Approximately 15 participants from the project steering group and the team will gather to collaboratively shape the future direction of the PSY-DIVER project."
+    }
+  ],
+  "customPages": []
+}

@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "partners": "Partners",
+    "news": "News",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "PSY-DIVER",
+    "subtitle": "Gender and Diversity-Related Factors in Psychiatric-Psychotherapeutic Hospital Care",
+    "description": "A groundbreaking research initiative examining how gender, origin, social circumstances, and living situations influence psychiatric treatment patterns, effectiveness, and outcomes.",
+    "learnMore": "Learn More",
+    "getInTouch": "Get in Touch",
+    "highlights": {
+      "title": "Project Highlights",
+      "goals": {
+        "title": "Research Goals",
+        "description": "Examining how psychiatric patients can receive more individualized and gender-equitable treatment through intersectional analysis."
+      },
+      "methodology": {
+        "title": "Methodology",
+        "description": "Mixed-methods approach combining large-scale data analysis, AI extraction, qualitative interviews, and stakeholder engagement."
+      },
+      "scale": {
+        "title": "Scale",
+        "description": "Analysis of approximately 50,000 annual inpatient cases and 170,000 outpatient cases from psychiatric hospital networks."
+      },
+      "impact": {
+        "title": "Expected Impact",
+        "description": "Evidence-based recommendations to improve psychiatric care equity and effectiveness for all patients."
+      }
+    },
+    "projectInfo": {
+      "duration": "Duration",
+      "durationValue": "November 2025 - October 2028",
+      "durationDesc": "3-year comprehensive research initiative",
+      "funding": "Funding",
+      "fundingValue": "€1 Million",
+      "fundingDesc": "Supported by Innovationsfonds",
+      "location": "Location",
+      "locationValue": "Köln, Germany",
+      "locationDesc": "North Rhine-Westphalia",
+      "lead": "Lead Institution",
+      "leadValue": "LVR-Klinik Köln",
+      "leadDesc": "LVR-Institut für Forschung und Bildung"
+    },
+    "researchFocus": {
+      "title": "Research Focus Areas",
+      "medication": {
+        "title": "Medication Differences",
+        "description": "Analyzing prescribing patterns across gender, origin, and social circumstances to identify disparities and optimize treatment approaches."
+      },
+      "therapeutic": {
+        "title": "Therapeutic Approaches",
+        "description": "Examining how different demographic variables influence the selection and delivery of psychotherapeutic interventions."
+      },
+      "outcomes": {
+        "title": "Treatment Outcomes",
+        "description": "Measuring effectiveness across diverse patient populations to ensure equitable care delivery and positive outcomes."
+      },
+      "intersectional": {
+        "title": "Intersectional Factors",
+        "description": "Understanding how gender, origin, housing status, and living situations interact to affect illness patterns and treatment responses."
+      }
+    },
+    "cta": {
+      "title": "Interested in Learning More?",
+      "description": "Discover detailed information about our research methodology, partners, and how we're working to improve psychiatric care for all.",
+      "aboutBtn": "About the Project",
+      "partnersBtn": "Our Partners"
+    }
+  },
+  "footer": {
+    "description": "Gender and diversity-related factors in psychiatric-psychotherapeutic hospital care",
+    "fundingInfo": "Funded by Innovationsfonds",
+    "quickLinks": "Quick Links",
+    "contactTitle": "Contact",
+    "timeline": "Project Timeline",
+    "duration": "Duration",
+    "durationValue": "November 2025 - October 2028",
+    "location": "Location",
+    "locationValue": "North Rhine-Westphalia, Germany",
+    "copyright": "PSY-DIVER Project. All rights reserved."
+  },
+  "common": {
+    "skipToMain": "Skip to main content"
+  }
+}

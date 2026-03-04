@@ -1,0 +1,87 @@
+.read-aloud-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.read-aloud-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-magenta) 100%);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.read-aloud-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.read-aloud-btn:focus {
+  outline: 3px solid var(--color-yellow);
+  outline-offset: 2px;
+}
+
+.read-aloud-btn.reading {
+  animation: pulse 2s infinite;
+}
+
+.read-aloud-btn.stop-btn {
+  background: #e74c3c;
+  width: 48px;
+  height: 48px;
+}
+
+.read-aloud-btn.stop-btn:hover {
+  background: #c0392b;
+}
+
+.read-aloud-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(0, 188, 212, 0.5);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .read-aloud-container {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .read-aloud-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .read-aloud-btn.stop-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .read-aloud-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}

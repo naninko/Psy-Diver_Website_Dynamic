@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "partners": "Partner",
+    "news": "Neuigkeiten",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "title": "PSY-DIVER",
+    "subtitle": "Geschlecht und andere diversitätsbezogene Faktoren in der psychiatrisch-psychotherapeutischen Krankenhausversorgung",
+    "description": "Eine wegweisende Forschungsinitiative, die untersucht, wie Geschlecht, Herkunft, soziale Umstände und Lebenssituation psychiatrische Behandlungsmuster, Wirksamkeit und Ergebnisse beeinflussen.",
+    "learnMore": "Mehr erfahren",
+    "getInTouch": "Kontakt aufnehmen",
+    "highlights": {
+      "title": "Projekt-Highlights",
+      "goals": {
+        "title": "Forschungsziele",
+        "description": "Untersuchung, wie psychiatrische Patienten durch intersektionale Analyse eine individuellere und geschlechtergerechte Behandlung erhalten können."
+      },
+      "methodology": {
+        "title": "Methodik",
+        "description": "Mixed-Methods-Ansatz, der umfangreiche Datenanalyse, KI-Extraktion, qualitative Interviews und Stakeholder-Einbindung kombiniert."
+      },
+      "scale": {
+        "title": "Umfang",
+        "description": "Analyse von ca. 50.000 stationären und 170.000 ambulanten Fällen pro Jahr aus psychiatrischen Krankenhausnetzwerken."
+      },
+      "impact": {
+        "title": "Erwartete Wirkung",
+        "description": "Evidenzbasierte Empfehlungen zur Verbesserung der Gleichberechtigung und Wirksamkeit der psychiatrischen Versorgung für alle Patienten."
+      }
+    },
+    "projectInfo": {
+      "duration": "Laufzeit",
+      "durationValue": "November 2025 - Oktober 2028",
+      "durationDesc": "3-jährige umfassende Forschungsinitiative",
+      "funding": "Förderung",
+      "fundingValue": "1 Million €",
+      "fundingDesc": "Unterstützt durch den Innovationsfonds",
+      "location": "Standort",
+      "locationValue": "Köln, Deutschland",
+      "locationDesc": "Nordrhein-Westfalen",
+      "lead": "Federführende Einrichtung",
+      "leadValue": "LVR-Klinik Köln",
+      "leadDesc": "LVR-Institut für Forschung und Bildung"
+    },
+    "researchFocus": {
+      "title": "Forschungsschwerpunkte",
+      "medication": {
+        "title": "Medikationsunterschiede",
+        "description": "Analyse von Verschreibungsmustern nach Geschlecht, Herkunft und sozialen Umständen zur Identifizierung von Disparitäten und Optimierung von Behandlungsansätzen."
+      },
+      "therapeutic": {
+        "title": "Therapeutische Ansätze",
+        "description": "Untersuchung, wie verschiedene demografische Variablen die Auswahl und Durchführung psychotherapeutischer Interventionen beeinflussen."
+      },
+      "outcomes": {
+        "title": "Behandlungsergebnisse",
+        "description": "Messung der Wirksamkeit bei verschiedenen Patientengruppen zur Sicherstellung einer gerechten Versorgung und positiver Ergebnisse."
+      },
+      "intersectional": {
+        "title": "Intersektionale Faktoren",
+        "description": "Verständnis, wie Geschlecht, Herkunft, Wohnsituation und Lebensverhältnisse zusammenwirken und Krankheitsmuster sowie Behandlungsreaktionen beeinflussen."
+      }
+    },
+    "cta": {
+      "title": "Möchten Sie mehr erfahren?",
+      "description": "Entdecken Sie detaillierte Informationen über unsere Forschungsmethodik, Partner und wie wir daran arbeiten, die psychiatrische Versorgung für alle zu verbessern.",
+      "aboutBtn": "Über das Projekt",
+      "partnersBtn": "Unsere Partner"
+    }
+  },
+  "footer": {
+    "description": "Geschlecht und andere diversitätsbezogene Faktoren in der psychiatrisch-psychotherapeutischen Krankenhausversorgung",
+    "fundingInfo": "Gefördert durch den Innovationsfonds",
+    "quickLinks": "Schnellzugriff",
+    "contactTitle": "Kontakt",
+    "timeline": "Projektzeitplan",
+    "duration": "Laufzeit",
+    "durationValue": "November 2025 - Oktober 2028",
+    "location": "Standort",
+    "locationValue": "Nordrhein-Westfalen, Deutschland",
+    "copyright": "PSY-DIVER Projekt. Alle Rechte vorbehalten."
+  },
+  "common": {
+    "skipToMain": "Zum Hauptinhalt springen"
+  }
+}

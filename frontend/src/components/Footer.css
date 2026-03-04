@@ -1,0 +1,133 @@
+.footer {
+  background: linear-gradient(135deg, var(--color-navy) 0%, #2a4a6a 100%);
+  color: var(--color-white);
+  padding: var(--spacing-xxl) 0 var(--spacing-lg);
+  margin-top: var(--spacing-xxl);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.footer-section h3 {
+  color: var(--color-cyan);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer-section h4 {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  margin-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-magenta);
+  padding-bottom: var(--spacing-xs);
+  display: inline-block;
+}
+
+.footer-section p {
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.funding-info {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: rgba(0, 212, 170, 0.1);
+  border-left: 3px solid var(--color-cyan);
+  border-radius: var(--radius-sm);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-links a {
+  color: var(--color-white);
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-links a:hover {
+  color: var(--color-cyan);
+  transform: translateX(5px);
+}
+
+.footer-section address {
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.footer-section address a {
+  color: var(--color-white);
+  text-decoration: underline;
+}
+
+.footer-section address a:hover {
+  color: var(--color-cyan);
+}
+
+.location {
+  margin-top: var(--spacing-sm);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: var(--spacing-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.footer-logos {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.footer-logo {
+  height: 50px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: opacity var(--transition-fast);
+}
+
+.footer-logo:hover {
+  opacity: 1;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-logo {
+    height: 40px;
+  }
+}
