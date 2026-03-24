@@ -1,19 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../admin/AuthContext';
 import './News.css';
 
-const CATEGORY_COLORS = {
-  projectUpdate: 'var(--color-cyan)',
-  teamNews: 'var(--color-magenta)',
-  methodology: 'var(--color-yellow)',
-  engagement: 'var(--color-coral)'
-};
-
 function formatDate(dateStr, lang) {
   if (!dateStr) return '';
-  const date = new Date(dateStr);
-  return date.toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-GB', {
+  return new Date(dateStr).toLocaleDateString(lang === 'de' ? 'de-DE' : 'en-GB', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
 }
@@ -21,6 +14,7 @@ function formatDate(dateStr, lang) {
 function News() {
   const { t, i18n } = useTranslation();
   const { isAdmin, token } = useAuth();
+  const navigate = useNavigate();
   const lang = i18n.language;
 
   const [newsItems, setNewsItems] = useState([]);
@@ -32,8 +26,7 @@ function News() {
     setError('');
     try {
       const res = await fetch('/api/news');
-      const data = await res.json();
-      setNewsItems(data);
+      setNewsItems(await res.json());
     } catch {
       setError('News konnten nicht geladen werden.');
     } finally {
@@ -41,21 +34,16 @@ function News() {
     }
   }, []);
 
-  useEffect(() => {
-    fetchNews();
-  }, [fetchNews]);
+  useEffect(() => { fetchNews(); }, [fetchNews]);
 
-  async function handleDelete(id) {
+  async function handleDelete(e, id) {
+    e.stopPropagation();
     if (!window.confirm('Diesen Beitrag wirklich löschen?')) return;
-    try {
-      await fetch(`/api/news/${id}`, {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      fetchNews();
-    } catch {
-      alert('Fehler beim Löschen.');
-    }
+    await fetch(`/api/news/${id}`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    fetchNews();
   }
 
   return (
@@ -81,49 +69,41 @@ function News() {
 
       <section className="news-section">
         <div className="container">
-          {loading && (
-            <p className="news-loading">Laden…</p>
-          )}
-          {error && (
-            <p className="news-error">{error}</p>
-          )}
+          {loading && <p className="news-loading">Laden…</p>}
+          {error   && <p className="news-error">{error}</p>}
           {!loading && !error && (
             <div className="news-grid">
-              {newsItems.length > 0 ? (
-                newsItems.map(item => {
-                  const title = lang === 'de' ? item.titleDe : item.titleEn;
-                  const excerpt = lang === 'de' ? item.excerptDe : item.excerptEn;
-                  const content = lang === 'de' ? item.contentDe : item.contentEn;
-                  const color = CATEGORY_COLORS[item.category] || 'var(--color-cyan)';
+              {newsItems.length > 0 ? newsItems.map(item => {
+                const title   = lang === 'de' ? item.titleDe   : item.titleEn;
+                const excerpt = lang === 'de' ? item.excerptDe : item.excerptEn;
 
-                  return (
-                    <article key={item.id} className="news-card">
-                      <div className="news-header" style={{ '--category-color': color }}>
-                        <span className="news-category">
-                          {t('news.categories.' + item.category)}
-                        </span>
-                        <span className="news-date">{formatDate(item.date, lang)}</span>
-                      </div>
-                      <div className="news-body">
-                        <h3>{title}</h3>
-                        {excerpt && <p className="news-excerpt">{excerpt}</p>}
-                        {content && <p className="news-content">{content}</p>}
-                        {isAdmin && (
-                          <button
-                            className="news-delete-btn"
-                            onClick={() => handleDelete(item.id)}
-                          >
-                            🗑 Löschen
-                          </button>
-                        )}
-                      </div>
-                    </article>
-                  );
-                })
-              ) : (
-                <div className="no-news">
-                  <p>{t('news.noNews')}</p>
-                </div>
+                return (
+                  <article
+                    key={item.id}
+                    className="news-card"
+                    onClick={() => navigate(`/news/${item.id}`)}
+                  >
+                    <div className="news-card__top">
+                      <span className="news-date">{formatDate(item.date, lang)}</span>
+                    </div>
+                    <div className="news-card__body">
+                      <h3 className="news-card__title">{title}</h3>
+                      {excerpt && <p className="news-card__excerpt">{excerpt}</p>}
+                    </div>
+                    <div className="news-card__footer">
+                      <span className="news-card__readmore">
+                        {lang === 'de' ? 'Mehr lesen' : 'Read more'} →
+                      </span>
+                      {isAdmin && (
+                        <button className="news-delete-btn" onClick={e => handleDelete(e, item.id)}>
+                          🗑
+                        </button>
+                      )}
+                    </div>
+                  </article>
+                );
+              }) : (
+                <div className="no-news"><p>{t('news.noNews')}</p></div>
               )}
             </div>
           )}

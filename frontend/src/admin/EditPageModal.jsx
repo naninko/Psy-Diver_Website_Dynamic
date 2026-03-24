@@ -4,20 +4,23 @@ import RichTextEditor from './RichTextEditor';
 import './Modal.css';
 
 const NAV_GROUPS = [
-  { value: 'about',   labelDe: 'Unter "Über das Projekt"',           labelEn: 'Under "About the Project"' },
-  { value: 'team',    labelDe: 'Unter "Über Uns"',                   labelEn: 'Under "About Us"' },
-  { value: 'news',    labelDe: 'Unter "Neuigkeiten"',                labelEn: 'Under "News"' },
-  { value: 'contact', labelDe: 'Unter "Kontakt"',                    labelEn: 'Under "Contact"' },
-  { value: 'top',     labelDe: 'Neuer eigener Tab (Hauptnavigation)', labelEn: 'New standalone tab (main navigation)' }
+  { value: 'about',   labelDe: 'Unter "Über das Projekt"' },
+  { value: 'team',    labelDe: 'Unter "Über Uns"' },
+  { value: 'news',    labelDe: 'Unter "Neuigkeiten"' },
+  { value: 'contact', labelDe: 'Unter "Kontakt"' },
+  { value: 'top',     labelDe: 'Eigener Tab (Hauptnavigation)' }
 ];
 
-export default function AddPageModal({ onClose, onSaved }) {
+export default function EditPageModal({ page, onClose, onSaved }) {
   const { token } = useAuth();
   const [form, setForm] = useState({
-    slug: '', navGroup: 'about',
-    titleDe: '', titleEn: '',
-    subtitleDe: '', subtitleEn: '',
-    contentDe: '', contentEn: ''
+    titleDe: page.titleDe,
+    titleEn: page.titleEn,
+    subtitleDe: page.subtitleDe || '',
+    subtitleEn: page.subtitleEn || '',
+    contentDe: page.contentDe,
+    contentEn: page.contentEn,
+    navGroup: page.navGroup
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -26,28 +29,13 @@ export default function AddPageModal({ onClose, onSaved }) {
     setForm(f => ({ ...f, [field]: value }));
   }
 
-  function slugify(text) {
-    return text
-      .toLowerCase()
-      .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '');
-  }
-
-  function handleTitleDe(value) {
-    set('titleDe', value);
-    if (!form.slug || form.slug === slugify(form.titleDe)) {
-      set('slug', slugify(value));
-    }
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('/api/pages', {
-        method: 'POST',
+      const res = await fetch(`/api/pages/${page.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(form)
       });
@@ -65,17 +53,17 @@ export default function AddPageModal({ onClose, onSaved }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal modal--wide" onClick={e => e.stopPropagation()}>
         <div className="modal__header">
-          <h2 className="modal__title">📄 Neue Seite erstellen</h2>
+          <h2 className="modal__title">✏️ Seite bearbeiten</h2>
           <button className="modal__close" onClick={onClose}>✕</button>
         </div>
 
         <form onSubmit={handleSubmit} className="modal__form">
           <div className="modal__row">
             <label className="modal__label">
-              URL-Pfad (slug) *
-              <input value={form.slug} onChange={e => set('slug', slugify(e.target.value))}
-                className="modal__input" required placeholder="z.B. projektsteuergruppe" />
-              <span className="modal__hint">psy-diver.de/<strong>{form.slug || '…'}</strong></span>
+              URL-Pfad
+              <input value={page.slug} className="modal__input" disabled
+                style={{ opacity: 0.5, cursor: 'not-allowed' }} />
+              <span className="modal__hint">Der Pfad kann nach der Erstellung nicht geändert werden.</span>
             </label>
             <label className="modal__label">
               Wo in der Navigation?
@@ -92,9 +80,9 @@ export default function AddPageModal({ onClose, onSaved }) {
             <div className="modal__col">
               <h3 className="modal__lang">🇩🇪 Deutsch</h3>
               <label className="modal__label">
-                Seitenname (Navigation & Titel) *
-                <input value={form.titleDe} onChange={e => handleTitleDe(e.target.value)}
-                  className="modal__input" required placeholder="z.B. Projektsteuergruppe" />
+                Seitenname *
+                <input value={form.titleDe} onChange={e => set('titleDe', e.target.value)}
+                  className="modal__input" required />
               </label>
               <label className="modal__label">
                 Untertitel
@@ -109,9 +97,9 @@ export default function AddPageModal({ onClose, onSaved }) {
             <div className="modal__col">
               <h3 className="modal__lang">🇬🇧 English</h3>
               <label className="modal__label">
-                Page Title (Navigation & Heading) *
+                Page Title *
                 <input value={form.titleEn} onChange={e => set('titleEn', e.target.value)}
-                  className="modal__input" required placeholder="e.g. Project Steering Group" />
+                  className="modal__input" required />
               </label>
               <label className="modal__label">
                 Subtitle
@@ -129,7 +117,7 @@ export default function AddPageModal({ onClose, onSaved }) {
           <div className="modal__actions">
             <button type="button" className="modal__btn modal__btn--cancel" onClick={onClose}>Abbrechen</button>
             <button type="submit" className="modal__btn modal__btn--save" disabled={loading}>
-              {loading ? 'Erstellen…' : 'Seite erstellen'}
+              {loading ? 'Speichern…' : 'Änderungen speichern'}
             </button>
           </div>
         </form>

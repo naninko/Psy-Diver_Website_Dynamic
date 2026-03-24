@@ -12,28 +12,6 @@
       "contentEn": "The PSY-DIVER project has officially launched with funding from the Innovationsfonds."
     },
     {
-      "id": "2",
-      "date": "2026-02-01",
-      "category": "teamNews",
-      "titleDe": "Forschungsteam vollständig aufgebaut",
-      "titleEn": "Research Team Assembly Complete",
-      "excerptDe": "Unser multidisziplinäres Forschungsteam wurde zusammengestellt.",
-      "excerptEn": "Our multidisciplinary research team has been assembled.",
-      "contentDe": "Wir sind stolz, den Abschluss unseres Forschungsteamaufbaus bekannt zu geben, der Expert*innen aus Psychiatrie, Datenwissenschaft und Gesundheitsgerechtigkeitsforschung zusammenbringt.",
-      "contentEn": "We are proud to announce the completion of our research team assembly, bringing together experts in psychiatry, data science, and health equity research."
-    },
-    {
-      "id": "3",
-      "date": "2026-01-15",
-      "category": "methodology",
-      "titleDe": "Datenerfassungsinfrastruktur eingerichtet",
-      "titleEn": "Data Collection Infrastructure Established",
-      "excerptDe": "Modernste Datenerfassungsinfrastruktur wurde eingerichtet.",
-      "excerptEn": "State-of-the-art data collection infrastructure has been established.",
-      "contentDe": "Unser Team hat erfolgreich die technische Infrastruktur für die Datenerfassung etabliert, einschließlich KI-gestützter Extraktionssysteme und sicherer Datenverwaltungsprotokolle.",
-      "contentEn": "Our team has successfully established the technical infrastructure for data collection, including AI-powered extraction systems and secure data management protocols."
-    },
-    {
       "id": "4",
       "date": "2026-02-18",
       "category": "engagement",
@@ -43,7 +21,105 @@
       "excerptEn": "Participatory workshop planned for collaborative project development.",
       "contentDe": "Der Co-Creation Workshop findet am 18.02.2026 von 09:00-15:00 Uhr in der LVR-Klinik Köln statt. Dabei werden ca. 15 Teilnehmer*innen von der Projektsteuerungsgruppe und das Team zusammenkommen, um gemeinsam die weitere Ausrichtung des PSY-DIVER Projekts zu gestalten.",
       "contentEn": "The Co-Creation Workshop will take place on February 18, 2026, from 9:00 AM to 3:00 PM at LVR-Klinik Köln. Approximately 15 participants from the project steering group and the team will gather to collaboratively shape the future direction of the PSY-DIVER project."
+    },
+    {
+      "id": "1773146860757",
+      "date": "2026-03-10",
+      "category": "projectUpdate",
+      "titleDe": "Erfolgreicher Co-Creation Workshop",
+      "titleEn": "Erfolgreicher Co-Creation Workshop",
+      "excerptDe": "Partizipativer Auftakt zur gemeinsamen Projektgestaltung.",
+      "excerptEn": "Partizipativer Auftakt zur gemeinsamen Projektgestaltung.",
+      "contentDe": "<p>Am <strong>18.02.2026</strong> fand in der LVR-Klinik Köln der erste Co-Creation Workshop von PSY-DIVER statt. Rund 20 Teilnehmer*innen, darunter Betroffene, Angehörige sowie klinische Professionelle aus Medizin, Psychologie, Pflege und Sozialarbeit, erarbeiteten gemeinsam diversitätssensible Bedarfe für die psychiatrische Versorgung.</p><p>Mithilfe von Design-Thinking-Methoden wurden Versorgungsverläufe entlang von Dimensionen wie Geschlecht, Identität, Herkunft und Teilhabe analysiert. Der resultierende Hypothesenkatalog bildet nun die Grundlage für die kommenden Datenerhebungen und Analysen bis zum Projektende im Oktober 2028.</p><p>Wir danken allen Beteiligten für den wertvollen trialogischen Austausch!</p><img src=\"blob:https://localhost:5173/a3ee6508-eb3e-4440-9cbe-b52506c7ea5d\" class=\"img-center\"><p></p>",
+      "contentEn": ""
     }
   ],
-  "customPages": []
+  "customPages": [
+    {
+      "id": "1773168498751",
+      "slug": "die-trialogische-projektsteuergruppe",
+      "navGroup": "team",
+      "titleDe": "Die trialogische Projektsteuergruppe",
+      "titleEn": "The trialogical project steering group",
+      "contentDe": "<p>Partizipation auf Augenhöhe</p><p></p><img src=\"blob:https://localhost:5173/b129ec3d-c762-4f1b-849a-51a36146b296\" class=\"img-center\"><p>&nbsp;</p><p>&nbsp;Ein zentraler Pfeiler des Projekts PSY-DIVER ist die partizipative Forschung. Um sicherzustellen, dass die Ergebnisse des Projekts die reale Versorgungssituation widerspiegeln und für alle Beteiligten relevant sind, wird das Projekt durch eine <strong>trialogische Projektsteuergruppe</strong> eng begleitet.</p><p>&nbsp;</p><h2><strong>Was bedeutet „trialogisch“?</strong></h2><p>Der Begriff „Trialog“ steht für den Austausch auf Augenhöhe zwischen drei Gruppen, die unterschiedliche Perspektiven einbringen. In unserer Steuergruppe sind dies:</p><p>&nbsp;<strong>&nbsp;</strong></p><p><strong>Besonderes Augenmerk auf Diversität</strong></p><p>Die Mitglieder bringen spezifische Expertisen zu Themen wie beispielsweise Geschlecht, Migrationsgeschichte und LGBTQIA*-Identität sowie Erfahrungen mit verschiedensten Krankheitsbildern (u.a. Depression, PTBS, Borderline-Störung, bipolare Störung) in die Arbeit ein.</p><p><strong>&nbsp;</strong></p><table style=\"min-width: 75px;\"><colgroup><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"><col style=\"min-width: 25px;\"></colgroup><tbody><tr><td colspan=\"1\" rowspan=\"1\" style=\"background-color: rgb(254, 249, 195);\"><p><strong>Betroffene:</strong></p><p><strong>Expert*innen durch Erfahrung</strong></p></td><td colspan=\"1\" rowspan=\"1\" style=\"background-color: rgb(207, 250, 254);\"><p><strong>An- und Zugehörige:</strong></p><p><strong>Expert*innen durch Begleitung</strong></p></td><td colspan=\"1\" rowspan=\"1\" style=\"background-color: rgb(220, 252, 231);\"><p><strong>Professionelle</strong></p><p><strong>Expert*innen durch Beruf</strong></p></td></tr><tr><td colspan=\"1\" rowspan=\"1\"><p>Menschen mit eigenen Behandlungserfahrungen und Wissen über Barrieren in der Versorgung.</p></td><td colspan=\"1\" rowspan=\"1\"><p>Personen, die das System aus Sicht der familiären und sozialen Unterstützung kennen.</p></td><td colspan=\"1\" rowspan=\"1\"><p>Akteur*innen aus Medizin, Pflege, Psychologie, Sozialarbeit und Krankenhausverwaltung.</p></td></tr></tbody></table><p><strong>Arbeitsweise</strong></p><p>Die Projektsteuergruppe begleitet PSY-DIVER über die gesamte dreijährige Laufzeit in vierteljährlichen, hybriden Sitzungen, um eine barrierearme Teilhabe vor Ort oder digital zu ermöglichen. Dabei arbeiten wir nach dem Prinzip der Co-Creation, bei dem die Erfahrungsexpertise von Betroffenen und Angehörigen den gleichen Stellenwert einnimmt wie die wissenschaftliche Fachkenntnis. Dieser kontinuierliche Austausch auf Augenhöhe stellt sicher, dass die Projektergebnisse eine hohe praktische Relevanz für alle Beteiligten im Versorgungssystem haben, und dass PSY-DIVER ein Forschungsprojekt <em>mit</em> Menschen ist, nicht nur <em>über</em>sie</p>",
+      "contentEn": "",
+      "subtitleDe": "",
+      "subtitleEn": ""
+    },
+    {
+      "id": "1773234559978",
+      "slug": "wissenschaftlicher-beirat",
+      "navGroup": "team",
+      "titleDe": "Wissenschaftlicher Beirat",
+      "titleEn": "Scientific Advisory Board",
+      "contentDe": "<p>Der wissenschaftliche Beirat begleitet das Projekt PSY-DIVER als Fachgremium und stellt durch seine Expertise die methodische Qualität der Forschung sicher.</p><p>Es besteht aus sieben Professor*innen, die als Expert*innen die verschiedenen Diversitätsdimensionen des Projekts – von Migration über Geschlecht bis hin zu Neurodiversität – fachlich repräsentieren.</p><p>Die zentrale Funktion des Wissenschaftlichen Beirats liegt in der kontinuierlichen Validierung der Projektschritte.</p><p>Ein wesentlicher Schwerpunkt der Zusammenarbeit ist zudem die gemeinsame Erarbeitung von praxisnahen Handlungsempfehlungen für die psychiatrisch-psychotherapeutische Versorgung. Durch die Verbindungen des Beirats in die Fachreferate der Deutschen Gesellschaft für Psychiatrie und Psychotherapie, Psychosomatik und Nervenheilkunde&nbsp;(DGPPN) wird ein direkter Transfer der Erkenntnisse in die psychiatrische Fachwelt gewährleistet.</p><p></p><p></p>",
+      "contentEn": "<p>The scientific advisory board accompanies the PSY-DIVER project as an expert committee and ensures the methodological quality of the research through its expertise.</p><p>It consists of seven professors who, as experts, represent the various diversity dimensions of the project – from migration and gender to neurodiversity.</p><p>The central function of the Scientific Advisory Board lies in the continuous validation of project steps.</p><p>A key focus of the collaboration is also the joint development of practical recommendations for psychiatric-psychotherapeutic care. Through the advisory board’s connections to the specialist departments of the German Association for Psychiatry, Psychotherapy, Psychosomatics and Neurology&nbsp;(DGPPN), a direct transfer of findings into the psychiatric professional community is ensured.</p><p></p>",
+      "subtitleDe": "Wissenschaftliche Perspektiven auf Diversität und Versorgung",
+      "subtitleEn": "Scientific Perspectives on Diversity and Care",
+      "membersTitleDe": "Mitglieder des Beirats",
+      "membersTitleEn": "Members of the Advisory Board",
+      "members": [
+        {
+          "nameDe": "Prof. Dr. Meryam Schouler-Ocak",
+          "nameEn": "Prof. Dr. Meryam Schouler-Ocak",
+          "roleDe": "Migration & Interkulturalität",
+          "roleEn": "Migration & Interculturality",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Götz Mundle",
+          "nameEn": "Prof. Dr. Götz Mundle",
+          "roleDe": "Sexuelle Orientierung & Identität",
+          "roleEn": "Sexual Orientation & Identity",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Ulrich Reininghaus",
+          "nameEn": "Prof. Dr. Ulrich Reininghaus",
+          "roleDe": "Soziale Marginalisierung",
+          "roleEn": "Social Marginalisation",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Dr. Kai Vogeley",
+          "nameEn": "Prof. Dr. Dr. Kai Vogeley",
+          "roleDe": "Neurodiversität",
+          "roleEn": "Neurodiversity",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Anette Kersting",
+          "nameEn": "Prof. Dr. Anette Kersting",
+          "roleDe": "Geschlecht & Psychotherapieforschung",
+          "roleEn": "Gender & Psychotherapy Research",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Florian Metzger",
+          "nameEn": "Prof. Dr. Florian Metzger",
+          "roleDe": "Gerontopsychiatrie",
+          "roleEn": "Gerontopsychiatry",
+          "photo": null
+        },
+        {
+          "nameDe": "Prof. Dr. Michael Seidel",
+          "nameEn": "Prof. Dr. Michael Seidel",
+          "roleDe": "Inklusion & Behinderung",
+          "roleEn": "Inclusion & Disability",
+          "photo": null
+        }
+      ]
+    }
+  ],
+  "staticPages": [
+    {
+      "slug": "team",
+      "titleDe": "Team",
+      "titleEn": "Team",
+      "subtitleDe": "Lernen Sie das PSY-DIVER Team kennen",
+      "subtitleEn": "Get to know das PSY-DIVER Team",
+      "contentDe": "",
+      "contentEn": ""
+    }
+  ]
 }

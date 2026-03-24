@@ -1,8 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { readFileSync } from 'fs'
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
 
-// https://vite.dev/config/
+const __dir = dirname(fileURLToPath(import.meta.url))
+
 export default defineConfig({
   plugins: [react()],
   base: '/',
@@ -13,11 +16,12 @@ export default defineConfig({
     host: true,
     port: 5173,
     https: {
-      key: readFileSync('./localhost-key.pem'),
-      cert: readFileSync('./localhost.pem')
+      key: readFileSync(resolve(__dir, 'localhost-key.pem')),
+      cert: readFileSync(resolve(__dir, 'localhost.pem'))
     },
     proxy: {
-      '/api': 'http://localhost:3001'
+      '/api': 'http://localhost:3001',
+      '/uploads': 'http://localhost:3001'
     }
   }
 })

@@ -4,6 +4,7 @@ import { useAuth } from './AuthContext';
 import './AdminLogin.css';
 
 export default function AdminLogin() {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ export default function AdminLogin() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password })
+        body: JSON.stringify({ username, password })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Login failed');
@@ -38,6 +39,17 @@ export default function AdminLogin() {
         <p className="admin-login__subtitle">PSY-DIVER Content Management</p>
         <form onSubmit={handleSubmit} className="admin-login__form">
           <label className="admin-login__label">
+            Benutzername / Username
+            <input
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              className="admin-login__input"
+              required
+              autoFocus
+            />
+          </label>
+          <label className="admin-login__label">
             Passwort / Password
             <input
               type="password"
@@ -45,7 +57,6 @@ export default function AdminLogin() {
               onChange={e => setPassword(e.target.value)}
               className="admin-login__input"
               required
-              autoFocus
             />
           </label>
           {error && <p className="admin-login__error">{error}</p>}

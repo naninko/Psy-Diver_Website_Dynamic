@@ -1,17 +1,22 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import EditablePageBody from './EditablePageBody';
 import './Partners.css';
 
 function Partners() {
   const { t } = useTranslation();
+  const [titleOverride, setTitleOverride] = useState(null);
+  const [subtitleOverride, setSubtitleOverride] = useState(null);
 
   return (
     <div className="partners">
       <section className="page-header">
         <div className="container">
-          <h1>{t('partners.title')}</h1>
-          <p className="page-subtitle">{t('partners.subtitle')}</p>
+          <h1>{titleOverride || t('partners.title')}</h1>
+          <p className="page-subtitle">{subtitleOverride || t('partners.subtitle')}</p>
         </div>
       </section>
+      <EditablePageBody slug="partners" onTitleChange={setTitleOverride} onSubtitleChange={setSubtitleOverride}>
 
       <section className="lead-institution">
         <div className="container">
@@ -143,6 +148,7 @@ function Partners() {
           </div>
         </div>
       </section>
+      </EditablePageBody>
     </div>
   );
 }

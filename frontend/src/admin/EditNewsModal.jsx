@@ -3,13 +3,16 @@ import { useAuth } from './AuthContext';
 import RichTextEditor from './RichTextEditor';
 import './Modal.css';
 
-export default function AddNewsModal({ onClose, onSaved }) {
+export default function EditNewsModal({ item, onClose, onSaved }) {
   const { token } = useAuth();
   const [form, setForm] = useState({
-    date: new Date().toISOString().split('T')[0],
-    titleDe: '', titleEn: '',
-    excerptDe: '', excerptEn: '',
-    contentDe: '', contentEn: ''
+    date:      item.date      || new Date().toISOString().split('T')[0],
+    titleDe:   item.titleDe   || '',
+    titleEn:   item.titleEn   || '',
+    excerptDe: item.excerptDe || '',
+    excerptEn: item.excerptEn || '',
+    contentDe: item.contentDe || '',
+    contentEn: item.contentEn || ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,8 +26,8 @@ export default function AddNewsModal({ onClose, onSaved }) {
     setError('');
     setLoading(true);
     try {
-      const res = await fetch('/api/news', {
-        method: 'POST',
+      const res = await fetch(`/api/news/${item.id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(form)
       });
@@ -42,7 +45,7 @@ export default function AddNewsModal({ onClose, onSaved }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal modal--wide" onClick={e => e.stopPropagation()}>
         <div className="modal__header">
-          <h2 className="modal__title">📰 Neuigkeit hinzufügen</h2>
+          <h2 className="modal__title">✏️ Neuigkeit bearbeiten</h2>
           <button className="modal__close" onClick={onClose}>✕</button>
         </div>
 
@@ -67,8 +70,7 @@ export default function AddNewsModal({ onClose, onSaved }) {
               <label className="modal__label">
                 Kurztext (Vorschau auf der Karte)
                 <textarea value={form.excerptDe} onChange={e => set('excerptDe', e.target.value)}
-                  className="modal__textarea" rows={2}
-                  placeholder="Kurze Zusammenfassung, die auf der News-Karte erscheint." />
+                  className="modal__textarea" rows={2} />
               </label>
               <label className="modal__label">
                 Vollständiger Artikel (mit Bildern)
@@ -87,8 +89,7 @@ export default function AddNewsModal({ onClose, onSaved }) {
               <label className="modal__label">
                 Excerpt (shown on the card)
                 <textarea value={form.excerptEn} onChange={e => set('excerptEn', e.target.value)}
-                  className="modal__textarea" rows={2}
-                  placeholder="Short summary that appears on the news card." />
+                  className="modal__textarea" rows={2} />
               </label>
               <label className="modal__label">
                 Full Article (with images)

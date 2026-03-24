@@ -2,9 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import multer from 'multer';
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname, join, extname } from 'path';
 import dotenv from 'dotenv';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
@@ -12,9 +13,18 @@ dotenv.config({ path: join(__dir, '.env') });
 
 const app = express();
 const DATA_FILE = join(__dir, 'data', 'content.json');
+const UPLOADS_DIR = join(__dir, 'uploads');
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
+app.use('/uploads', express.static(UPLOADS_DIR));
+
+// --- File upload (images) ---
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, UPLOADS_DIR),
+  filename: (req, file, cb) => cb(null, `${Date.now()}${extname(file.originalname)}`)
+});
+const upload = multer({ storage, limits: { fileSize: 5 * 1024 * 1024 } });
 
 // --- Helpers ---
 
@@ -30,7 +40,6 @@ function generateId() {
   return Date.now().toString();
 }
 
-// Store hashed password in memory (loaded from .env on start)
 let adminPasswordHash = bcrypt.hashSync(process.env.ADMIN_PASSWORD || 'psydiver2024', 10);
 
 function verifyToken(req, res, next) {
@@ -49,9 +58,12 @@ function verifyToken(req, res, next) {
 // --- Auth ---
 
 app.post('/api/auth/login', (req, res) => {
-  const { password } = req.body;
+  const { username, password } = req.body;
+  if (!username || username !== process.env.ADMIN_USERNAME) {
+    return res.status(401).json({ error: 'Wrong username or password' });
+  }
   if (!password || !bcrypt.compareSync(password, adminPasswordHash)) {
-    return res.status(401).json({ error: 'Wrong password' });
+    return res.status(401).json({ error: 'Wrong username or password' });
   }
   const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '8h' });
   res.json({ token });
@@ -69,6 +81,13 @@ app.post('/api/auth/change-password', verifyToken, (req, res) => {
   res.json({ message: 'Password changed successfully' });
 });
 
+// --- Image Upload ---
+
+app.post('/api/upload', verifyToken, upload.single('image'), (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+  res.json({ url: `/uploads/${req.file.filename}` });
+});
+
 // --- News ---
 
 app.get('/api/news', (req, res) => {
@@ -76,8 +95,15 @@ app.get('/api/news', (req, res) => {
   res.json(data.news.sort((a, b) => new Date(b.date) - new Date(a.date)));
 });
 
+app.get('/api/news/:id', (req, res) => {
+  const data = readData();
+  const item = data.news.find(n => n.id === req.params.id);
+  if (!item) return res.status(404).json({ error: 'News item not found' });
+  res.json(item);
+});
+
 app.post('/api/news', verifyToken, (req, res) => {
-  const { date, category, titleDe, titleEn, excerptDe, excerptEn, contentDe, contentEn } = req.body;
+  const { date, category, titleDe, titleEn, excerptDe, excerptEn, contentDe, contentEn, subtitleDe, subtitleEn } = req.body;
   if (!titleDe || !titleEn) {
     return res.status(400).json({ error: 'titleDe and titleEn are required' });
   }
@@ -97,6 +123,22 @@ app.post('/api/news', verifyToken, (req, res) => {
   res.status(201).json(item);
 });
 
+app.put('/api/news/:id', verifyToken, (req, res) => {
+  const { date, titleDe, titleEn, excerptDe, excerptEn, contentDe, contentEn } = req.body;
+  const data = readData();
+  const item = data.news.find(n => n.id === req.params.id);
+  if (!item) return res.status(404).json({ error: 'News item not found' });
+  if (date) item.date = date;
+  if (titleDe) item.titleDe = titleDe;
+  if (titleEn) item.titleEn = titleEn;
+  if (excerptDe !== undefined) item.excerptDe = excerptDe;
+  if (excerptEn !== undefined) item.excerptEn = excerptEn;
+  if (contentDe !== undefined) item.contentDe = contentDe;
+  if (contentEn !== undefined) item.contentEn = contentEn;
+  writeData(data);
+  res.json(item);
+});
+
 app.delete('/api/news/:id', verifyToken, (req, res) => {
   const data = readData();
   const before = data.news.length;
@@ -106,6 +148,40 @@ app.delete('/api/news/:id', verifyToken, (req, res) => {
   }
   writeData(data);
   res.json({ message: 'Deleted' });
+});
+
+// --- Static Page Overrides ---
+
+app.get('/api/static-pages/:slug', (req, res) => {
+  const data = readData();
+  const page = (data.staticPages || []).find(p => p.slug === req.params.slug);
+  res.json(page || {});
+});
+
+app.put('/api/static-pages/:slug', verifyToken, (req, res) => {
+  const { titleDe, titleEn, subtitleDe, subtitleEn, contentDe, contentEn } = req.body;
+  const data = readData();
+  if (!data.staticPages) data.staticPages = [];
+  const existing = data.staticPages.find(p => p.slug === req.params.slug);
+  if (existing) {
+    existing.titleDe = titleDe || '';
+    existing.titleEn = titleEn || '';
+    existing.subtitleDe = subtitleDe || '';
+    existing.subtitleEn = subtitleEn || '';
+    existing.contentDe = contentDe || '';
+    existing.contentEn = contentEn || '';
+  } else {
+    data.staticPages.push({ slug: req.params.slug, titleDe: titleDe || '', titleEn: titleEn || '', subtitleDe: subtitleDe || '', subtitleEn: subtitleEn || '', contentDe: contentDe || '', contentEn: contentEn || '' });
+  }
+  writeData(data);
+  res.json({ slug: req.params.slug, titleDe, titleEn, subtitleDe, subtitleEn, contentDe, contentEn });
+});
+
+app.delete('/api/static-pages/:slug', verifyToken, (req, res) => {
+  const data = readData();
+  data.staticPages = (data.staticPages || []).filter(p => p.slug !== req.params.slug);
+  writeData(data);
+  res.json({ message: 'Reset to default' });
 });
 
 // --- Custom Pages ---
@@ -123,7 +199,7 @@ app.get('/api/pages/:slug', (req, res) => {
 });
 
 app.post('/api/pages', verifyToken, (req, res) => {
-  const { slug, navGroup, titleDe, titleEn, contentDe, contentEn } = req.body;
+  const { slug, navGroup, titleDe, titleEn, subtitleDe, subtitleEn, contentDe, contentEn } = req.body;
   if (!slug || !titleDe || !titleEn) {
     return res.status(400).json({ error: 'slug, titleDe, and titleEn are required' });
   }
@@ -136,12 +212,30 @@ app.post('/api/pages', verifyToken, (req, res) => {
     slug,
     navGroup: navGroup || 'about',
     titleDe, titleEn,
+    subtitleDe: subtitleDe || '',
+    subtitleEn: subtitleEn || '',
     contentDe: contentDe || '',
     contentEn: contentEn || ''
   };
   data.customPages.push(page);
   writeData(data);
   res.status(201).json(page);
+});
+
+app.put('/api/pages/:id', verifyToken, (req, res) => {
+  const { titleDe, titleEn, subtitleDe, subtitleEn, contentDe, contentEn, navGroup } = req.body;
+  const data = readData();
+  const page = data.customPages.find(p => p.id === req.params.id);
+  if (!page) return res.status(404).json({ error: 'Page not found' });
+  if (titleDe) page.titleDe = titleDe;
+  if (titleEn) page.titleEn = titleEn;
+  if (subtitleDe !== undefined) page.subtitleDe = subtitleDe;
+  if (subtitleEn !== undefined) page.subtitleEn = subtitleEn;
+  if (contentDe !== undefined) page.contentDe = contentDe;
+  if (contentEn !== undefined) page.contentEn = contentEn;
+  if (navGroup) page.navGroup = navGroup;
+  writeData(data);
+  res.json(page);
 });
 
 app.delete('/api/pages/:id', verifyToken, (req, res) => {

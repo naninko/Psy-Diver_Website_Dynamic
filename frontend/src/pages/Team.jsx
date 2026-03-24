@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import EditablePageBody from './EditablePageBody';
 import './Team.css';
 
 function Team() {
   const { t } = useTranslation();
+  const [titleOverride, setTitleOverride] = useState(null);
+  const [subtitleOverride, setSubtitleOverride] = useState(null);
 
   // PSY-DIVER Team Members from LVR-IFuB
   const teamMembers = [
@@ -67,10 +71,11 @@ function Team() {
       {/* Hero Section */}
       <section className="team-hero">
         <div className="container">
-          <h1 className="team-title">{t('team.title')}</h1>
-          <p className="team-subtitle">{t('team.subtitle')}</p>
+          <h1 className="team-title">{titleOverride || t('team.title')}</h1>
+          <p className="team-subtitle">{subtitleOverride || t('team.subtitle')}</p>
         </div>
       </section>
+      <EditablePageBody slug="team" onTitleChange={setTitleOverride} onSubtitleChange={setSubtitleOverride}>
 
       {/* Team Members Section */}
       <section className="team-members-section">
@@ -96,6 +101,7 @@ function Team() {
           </div>
         </div>
       </section>
+      </EditablePageBody>
     </div>
   );
 }

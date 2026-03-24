@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import EditablePageBody from './EditablePageBody';
 import './Contact.css';
 
 function Contact() {
   const { t } = useTranslation();
+  const [titleOverride, setTitleOverride] = useState(null);
+  const [subtitleOverride, setSubtitleOverride] = useState(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -34,12 +37,13 @@ function Contact() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1>{t('contact.title')}</h1>
+          <h1>{titleOverride || t('contact.title')}</h1>
           <p className="page-subtitle">
-            {t('contact.subtitle')}
+            {subtitleOverride || t('contact.subtitle')}
           </p>
         </div>
       </section>
+      <EditablePageBody slug="contact" onTitleChange={setTitleOverride} onSubtitleChange={setSubtitleOverride}>
 
       {/* Contact Content */}
       <section className="contact-section">
@@ -162,6 +166,7 @@ function Contact() {
           </div>
         </div>
       </section>
+      </EditablePageBody>
     </div>
   );
 }

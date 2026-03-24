@@ -40,7 +40,7 @@ function Home() {
           <div className="overview-content">
             <p dangerouslySetInnerHTML={{ __html: t('about.overview.para1') }}></p>
             <div className="overview-image">
-              <img src={`${import.meta.env.BASE_URL}7_Dimensionen.png`} alt="7 Diversitätsdimensionen" />
+              <img src={`${import.meta.env.BASE_URL}7_Dimensionen_ENG.png`} alt="7 Diversitätsdimensionen" />
             </div>
             <p dangerouslySetInnerHTML={{ __html: t('about.overview.para2') }}></p>
           </div>

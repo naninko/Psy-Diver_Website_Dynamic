@@ -15,18 +15,61 @@ function Header({ customPages = [] }) {
 
   const isActive = (path) => location.pathname === path ? 'active' : '';
 
-  const isAboutActive = () => {
-    const aboutPaths = ['/about', '/about/patients', '/about/relatives', '/about/professionals'];
-    const customAboutPaths = customPages
-      .filter(p => p.navGroup === 'about')
-      .map(p => `/${p.slug}`);
-    return [...aboutPaths, ...customAboutPaths].includes(location.pathname) ? 'active' : '';
+  // Returns 'active' if current path matches the base path or any custom sub-page for that group
+  const isGroupActive = (basePath, group) => {
+    const customPaths = customPages.filter(p => p.navGroup === group).map(p => `/${p.slug}`);
+    return location.pathname === basePath || customPaths.includes(location.pathname) ? 'active' : '';
   };
 
-  const aboutCustomPages = customPages.filter(p => p.navGroup === 'about');
-  const topCustomPages = customPages.filter(p => p.navGroup === 'top');
+  const isAboutActive = () => {
+    const staticPaths = ['/about', '/about/patients', '/about/relatives', '/about/professionals'];
+    const customPaths = customPages.filter(p => p.navGroup === 'about').map(p => `/${p.slug}`);
+    return [...staticPaths, ...customPaths].includes(location.pathname) ? 'active' : '';
+  };
 
   const getPageTitle = (page) => i18n.language === 'de' ? page.titleDe : page.titleEn;
+
+  // Get custom pages for each group
+  const pagesFor = (group) => customPages.filter(p => p.navGroup === group);
+  const topCustomPages = pagesFor('top');
+
+  // Helper: render a nav item that becomes a dropdown if it has custom sub-pages
+  function NavItemWithOptionalDropdown({ to, label, group, staticChildren, activeClass }) {
+    const subPages = pagesFor(group);
+    const hasDropdown = staticChildren || subPages.length > 0;
+    const computedActiveClass = activeClass !== undefined
+      ? activeClass
+      : (to ? isGroupActive(to, group) : '');
+
+    if (!hasDropdown) {
+      return (
+        <li>
+          <Link to={to} className={`nav-link ${isActive(to)}`} onClick={closeMenu}>
+            {label}
+          </Link>
+        </li>
+      );
+    }
+
+    return (
+      <li className="nav-item-dropdown">
+        {to
+          ? <Link to={to} className={`nav-link ${computedActiveClass}`} onClick={closeMenu}>{label}</Link>
+          : <span className={`nav-link ${computedActiveClass}`}>{label}</span>
+        }
+        <ul className="dropdown-menu">
+          {staticChildren}
+          {subPages.map(page => (
+            <li key={page.id}>
+              <Link to={`/${page.slug}`} className="dropdown-link" onClick={closeMenu}>
+                {getPageTitle(page)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </li>
+    );
+  }
 
   return (
     <header className="header">
@@ -55,50 +98,42 @@ function Header({ customPages = [] }) {
                 </Link>
               </li>
 
-              {/* Über uns dropdown (static + custom "about" pages) */}
-              <li className="nav-item-dropdown">
-                <Link to="/about" className={`nav-link ${isAboutActive()}`} onClick={closeMenu}>
-                  {t('nav.about')}
-                </Link>
-                <ul className="dropdown-menu">
-                  <li>
-                    <Link to="/about/patients" className="dropdown-link" onClick={closeMenu}>
-                      {t('nav.forPatients')}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/about/relatives" className="dropdown-link" onClick={closeMenu}>
-                      {t('nav.forRelatives')}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/about/professionals" className="dropdown-link" onClick={closeMenu}>
-                      {t('nav.forProfessionals')}
-                    </Link>
-                  </li>
-                  {/* Dynamically added "about" pages */}
-                  {aboutCustomPages.map(page => (
-                    <li key={page.id}>
-                      <Link to={`/${page.slug}`} className="dropdown-link" onClick={closeMenu}>
-                        {getPageTitle(page)}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </li>
+              {/* Über das Projekt — always a dropdown (has static sub-items) */}
+              <NavItemWithOptionalDropdown
+                to="/about"
+                label={t('nav.about')}
+                group="about"
+                staticChildren={<>
+                  <li><Link to="/about/patients" className="dropdown-link" onClick={closeMenu}>{t('nav.forPatients')}</Link></li>
+                  <li><Link to="/about/relatives" className="dropdown-link" onClick={closeMenu}>{t('nav.forRelatives')}</Link></li>
+                  <li><Link to="/about/professionals" className="dropdown-link" onClick={closeMenu}>{t('nav.forProfessionals')}</Link></li>
+                </>}
+              />
 
-              <li>
-                <Link to="/team" className={`nav-link ${isActive('/team')}`} onClick={closeMenu}>
-                  {t('nav.team')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/news" className={`nav-link ${isActive('/news')}`} onClick={closeMenu}>
-                  {t('nav.news')}
-                </Link>
-              </li>
+              {/* Über Uns — dropdown with Team as first item */}
+              <NavItemWithOptionalDropdown
+                to={null}
+                label={t('nav.aboutUs')}
+                group="team"
+                activeClass={
+                  location.pathname === '/team' ||
+                  pagesFor('team').map(p => `/${p.slug}`).includes(location.pathname)
+                    ? 'active' : ''
+                }
+                staticChildren={
+                  <li><Link to="/team" className="dropdown-link" onClick={closeMenu}>{t('nav.team')}</Link></li>
+                }
+              />
 
-              {/* Dynamically added top-level pages */}
+              {/* Neuigkeiten — dropdown only if custom pages added */}
+              <NavItemWithOptionalDropdown
+                to="/news"
+                label={t('nav.news')}
+                group="news"
+                staticChildren={null}
+              />
+
+              {/* Dynamically added top-level tabs */}
               {topCustomPages.map(page => (
                 <li key={page.id}>
                   <Link
@@ -111,11 +146,14 @@ function Header({ customPages = [] }) {
                 </li>
               ))}
 
-              <li>
-                <Link to="/contact" className={`nav-link ${isActive('/contact')}`} onClick={closeMenu}>
-                  {t('nav.contact')}
-                </Link>
-              </li>
+              {/* Kontakt — dropdown only if custom pages added */}
+              <NavItemWithOptionalDropdown
+                to="/contact"
+                label={t('nav.contact')}
+                group="contact"
+                staticChildren={null}
+              />
+
               <li className="lang-switcher-item">
                 <LanguageSwitcher />
               </li>

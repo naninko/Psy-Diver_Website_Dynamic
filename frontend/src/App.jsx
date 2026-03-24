@@ -16,6 +16,7 @@ import ForPatients from './pages/ForPatients';
 import ForRelatives from './pages/ForRelatives';
 import ForProfessionals from './pages/ForProfessionals';
 import CustomPage from './pages/CustomPage';
+import NewsArticle from './pages/NewsArticle';
 import AdminLogin from './admin/AdminLogin';
 import AdminButton from './admin/AdminButton';
 import { AuthProvider } from './admin/AuthContext';
@@ -61,6 +62,7 @@ function AppInner() {
             <Route path="/team" element={<Team />} />
             <Route path="/partners" element={<Partners />} />
             <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsArticle />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/imprint" element={<Imprint />} />
             <Route path="/admin" element={<AdminLogin />} />
@@ -69,7 +71,7 @@ function AppInner() {
               <Route
                 key={page.slug}
                 path={`/${page.slug}`}
-                element={<CustomPage page={page} onDelete={fetchCustomPages} />}
+                element={<CustomPage page={page} onDelete={fetchCustomPages} onUpdate={fetchCustomPages} />}
               />
             ))}
           </Routes>

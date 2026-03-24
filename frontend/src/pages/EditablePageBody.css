@@ -1,0 +1,42 @@
+.epb-admin-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 10px 0;
+  background: rgba(0, 188, 212, 0.08);
+  border-bottom: 1px dashed #00bcd4;
+}
+
+.epb-edit-btn,
+.epb-reset-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.epb-edit-btn {
+  background: #00bcd4;
+  color: white;
+}
+
+.epb-edit-btn:hover {
+  background: #0097a7;
+}
+
+.epb-reset-btn {
+  background: #f5f5f5;
+  color: #555;
+  border: 1px solid #ccc;
+}
+
+.epb-reset-btn:hover {
+  background: #e0e0e0;
+}
+
+.epb-body {
+  padding: 60px 0 80px;
+}

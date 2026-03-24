@@ -1,21 +1,26 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import EditablePageBody from './EditablePageBody';
 import './About.css';
 
 function About() {
   const { t } = useTranslation();
+  const [titleOverride, setTitleOverride] = useState(null);
+  const [subtitleOverride, setSubtitleOverride] = useState(null);
 
   return (
     <div className="about">
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1>{t('about.title')}</h1>
+          <h1>{titleOverride || t('about.title')}</h1>
           <p className="page-subtitle">
-            {t('about.subtitle')}
+            {subtitleOverride || t('about.subtitle')}
           </p>
         </div>
       </section>
+      <EditablePageBody slug="about" onTitleChange={setTitleOverride} onSubtitleChange={setSubtitleOverride}>
 
       {/* Projektübersicht / Project Overview */}
       <section className="overview-section">
@@ -111,6 +116,7 @@ function About() {
           </div>
         </div>
       </section>
+      </EditablePageBody>
     </div>
   );
 }

@@ -1,21 +1,26 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import EditablePageBody from './EditablePageBody';
 import './ForAudience.css';
 
 function ForPatients() {
   const { t } = useTranslation();
+  const [titleOverride, setTitleOverride] = useState(null);
+  const [subtitleOverride, setSubtitleOverride] = useState(null);
 
   return (
     <div className="for-audience-page">
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1>{t('forPatients.title')}</h1>
+          <h1>{titleOverride || t('forPatients.title')}</h1>
           <p className="page-subtitle">
-            {t('forPatients.subtitle')}
+            {subtitleOverride || t('forPatients.subtitle')}
           </p>
         </div>
       </section>
+      <EditablePageBody slug="for-patients" onTitleChange={setTitleOverride} onSubtitleChange={setSubtitleOverride}>
 
       {/* Content Section */}
       <section className="content-section">
@@ -102,6 +107,7 @@ function ForPatients() {
           </div>
         </div>
       </section>
+      </EditablePageBody>
     </div>
   );
 }
